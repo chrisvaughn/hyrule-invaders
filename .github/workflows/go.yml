@@ -34,7 +34,7 @@ jobs:
 
     - name: Unit Test
       run: |
-        go test ./pkg/... -coverpkg ./... -coverprofile cover.out
+        go test ./... -coverpkg ./... -coverprofile cover.out
         go tool cover -func=cover.out | grep total: | grep -Eo '[0-9]+\.[0-9]+'
 
     - name: Build
