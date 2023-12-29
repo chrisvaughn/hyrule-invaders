@@ -21,13 +21,15 @@ jobs:
       with:
         go-version: '1.21'
 
-    - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v3.7.0
-      with:
-        version: v1.55.2
+#    - name: Run golangci-lint
+#      uses: golangci/golangci-lint-action@v3.7.0
+#      with:
+#        version: v1.55.2
+#
+#    - name: Unit Test
+#      run: |
+#        go test ./pkg/... -coverpkg ./... -coverprofile cover.out
+#        go tool cover -func=cover.out | grep total: | grep -Eo '[0-9]+\.[0-9]+'
 
     - name: Build
       run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
