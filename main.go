@@ -36,7 +36,7 @@ func (g *Game) switchToTitle() {
 }
 
 func (g *Game) switchToGame() {
-	g.scene = scene.NewGame()
+	g.scene = scene.NewGame(screenWidth, screenHeight)
 }
 
 func (g *Game) Update() error {

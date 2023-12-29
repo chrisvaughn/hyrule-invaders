@@ -17,6 +17,10 @@ git clone https://github.com/chrisvaughn/hyrule-invaders.git
 go run . 
 ```
 
+## Inspiration
+
+I learned a lot about using [Ebitengine](https://ebitengine.org/) & [donburi](https://github.com/yohamta/donburi) by reading through [m110's Airplanes](https://github.com/m110/airplanes).  Code structure, basic component implementation, and assets approach are heavily borrowed. Many thanks m110.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
