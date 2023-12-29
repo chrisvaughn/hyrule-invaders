@@ -1,8 +1,12 @@
 package assets
 
 import (
+	"bytes"
 	_ "embed"
+	"image"
+	_ "image/png"
 
+	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/opentype"
 )
@@ -13,15 +17,22 @@ var (
 	//go:embed fonts/kenney-future-narrow.ttf
 	narrowFontData []byte
 
+	//go:embed icons/heart.png
+	heartIconData []byte
+
 	SmallFont  font.Face
 	NormalFont font.Face
 	NarrowFont font.Face
+
+	Health *ebiten.Image
 )
 
 func MustLoadAssets() {
 	SmallFont = mustLoadFont(normalFontData, 10)
 	NormalFont = mustLoadFont(normalFontData, 24)
 	NarrowFont = mustLoadFont(narrowFontData, 24)
+
+	Health = mustNewEbitenImage(heartIconData)
 }
 
 func mustLoadFont(data []byte, size int) font.Face {
@@ -40,4 +51,13 @@ func mustLoadFont(data []byte, size int) font.Face {
 	}
 
 	return face
+}
+
+func mustNewEbitenImage(data []byte) *ebiten.Image {
+	img, _, err := image.Decode(bytes.NewReader(data))
+	if err != nil {
+		panic(err)
+	}
+
+	return ebiten.NewImageFromImage(img)
 }
