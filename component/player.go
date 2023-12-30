@@ -1,6 +1,8 @@
 package component
 
 import (
+	"time"
+
 	"github.com/yohamta/donburi"
 
 	"github.com/chrisvaughn/hyrule-invaders/engine"
@@ -30,4 +32,9 @@ func (d *PlayerData) Damage() {
 	}
 }
 
+func (d *PlayerData) WeaponCooldown() time.Duration {
+	return 400 * time.Millisecond
+}
+
 var Player = donburi.NewComponentType[PlayerData]()
+var PlayerCharacter = donburi.NewComponentType[struct{}]()

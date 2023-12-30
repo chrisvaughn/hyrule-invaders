@@ -32,8 +32,17 @@ func NewGame(screenWidth int, screenHeight int) *Game {
 		screenWidth:  screenWidth,
 		screenHeight: screenHeight,
 	}
+	render := system.NewRenderer()
+
+	g.systems = []System{
+		system.NewControls(),
+		system.NewVelocity(),
+		system.NewBounds(),
+		render,
+	}
 
 	g.drawables = []Drawable{
+		render,
 		system.NewHUD(),
 	}
 
@@ -55,6 +64,7 @@ func (g *Game) createWorld() donburi.World {
 	})
 
 	archetype.NewPlayer(world)
+	archetype.NewPlayerCharacter(world)
 	return world
 }
 

@@ -19,12 +19,18 @@ var (
 
 	//go:embed icons/heart.png
 	heartIconData []byte
+	//go:embed characters/link.png
+	linkCharacterData []byte
+	//go:embed objects/arrow.png
+	arrowData []byte
 
 	SmallFont  font.Face
 	NormalFont font.Face
 	NarrowFont font.Face
 
 	Health *ebiten.Image
+	Link   *ebiten.Image
+	Arrow  *ebiten.Image
 )
 
 func MustLoadAssets() {
@@ -33,6 +39,8 @@ func MustLoadAssets() {
 	NarrowFont = mustLoadFont(narrowFontData, 24)
 
 	Health = mustNewEbitenImage(heartIconData)
+	Link = mustNewEbitenImage(linkCharacterData)
+	Arrow = mustNewEbitenImage(arrowData)
 }
 
 func mustLoadFont(data []byte, size int) font.Face {
