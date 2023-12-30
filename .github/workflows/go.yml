@@ -38,4 +38,42 @@ jobs:
         go tool cover -func=cover.out | grep total: | grep -Eo '[0-9]+\.[0-9]+'
 
     - name: Build
-      run: go build -v ./...
+      run: go build ./...
+
+    - name: Build Wasm
+      run: go build -o web/game.wasm
+      env:
+        GOOS: js
+        GOARCH: wasm
+
+    - name: Archive WASM build
+      uses: actions/upload-artifact@v4
+      with:
+        name: wasm-build
+        path: |
+          web/game.wasm
+
+  deploy:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Download math result for job 1
+        uses: actions/download-artifact@v4
+        with:
+          name: wasm-build
+          path: web/
+      - run: cp $(go env GOROOT)/misc/wasm/wasm_exec.js web/
+
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
