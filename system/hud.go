@@ -33,7 +33,6 @@ func (h *HUD) Draw(w donburi.World, screen *ebiten.Image) {
 		if h.game == nil {
 			return
 		}
-		// TODO I don't really like that it's done here
 		h.shadowOverlay = ebiten.NewImage(h.game.Settings.ScreenWidth, h.game.Settings.ScreenHeight)
 		h.shadowOverlay.Fill(colornames.Black)
 	}
@@ -59,7 +58,7 @@ func (h *HUD) Draw(w donburi.World, screen *ebiten.Image) {
 
 	if h.game.GameOver {
 		op := &ebiten.DrawImageOptions{}
-		op.ColorM.Scale(0, 0, 0, 0.5)
+		op.ColorScale.Scale(0, 0, 0, 0.5)
 		screen.DrawImage(h.shadowOverlay, op)
 
 		msg := "GAME OVER"
@@ -74,7 +73,7 @@ func (h *HUD) Draw(w donburi.World, screen *ebiten.Image) {
 		)
 	} else if h.game.Paused {
 		op := &ebiten.DrawImageOptions{}
-		op.ColorM.Scale(0, 0, 0, 0.5)
+		op.ColorScale.Scale(0, 0, 0, 0.5)
 		screen.DrawImage(h.shadowOverlay, op)
 
 		msg := "PAUSED"
