@@ -62,8 +62,8 @@ func (r *Render) Draw(w donburi.World, screen *ebiten.Image) {
 				continue
 			}
 
-			w, h := sprite.Image.Size()
-			halfW, halfH := float64(w)/2, float64(h)/2
+			s := sprite.Image.Bounds().Size()
+			halfW, halfH := float64(s.Y)/2, float64(s.X)/2
 
 			op := &ebiten.DrawImageOptions{}
 			op.GeoM.Translate(-halfW, -halfH)
@@ -75,7 +75,7 @@ func (r *Render) Draw(w donburi.World, screen *ebiten.Image) {
 			x := position.X
 			y := position.Y
 
-			switch sprite.Pivot {
+			switch sprite.Pivot { // nolint:exhaustive
 			case component.SpritePivotCenter:
 				x -= halfW
 				y -= halfH
@@ -87,8 +87,8 @@ func (r *Render) Draw(w donburi.World, screen *ebiten.Image) {
 			op.GeoM.Translate(halfW, halfH)
 
 			if sprite.ColorOverride != nil {
-				op.ColorM.Scale(0, 0, 0, sprite.ColorOverride.A)
-				op.ColorM.Translate(sprite.ColorOverride.R, sprite.ColorOverride.G, sprite.ColorOverride.B, 0)
+				op.ColorScale.Scale(0, 0, 0, float32(sprite.ColorOverride.A))
+				//op.ColorM.Translate(sprite.ColorOverride.R, sprite.ColorOverride.G, sprite.ColorOverride.B, 0)
 			}
 
 			op.GeoM.Translate(x, y)

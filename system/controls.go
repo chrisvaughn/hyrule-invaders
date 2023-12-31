@@ -2,6 +2,7 @@ package system
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/yohamta/donburi"
 	"github.com/yohamta/donburi/features/math"
 	"github.com/yohamta/donburi/features/transform"
@@ -59,7 +60,7 @@ func (i *Controls) Update(w donburi.World) {
 
 		player := archetype.MustFindPlayer(w)
 		player.ShootTimer.Update()
-		if ebiten.IsKeyPressed(input.ShootKey) && player.ShootTimer.IsReady() {
+		if inpututil.IsKeyJustPressed(input.ShootKey) && player.ShootTimer.IsReady() {
 			position := transform.Transform.Get(entry).LocalPosition
 			archetype.NewPlayerProjectile(w, position)
 			player.ShootTimer.Reset()

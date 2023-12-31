@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	playerProjectileSpeed = 10
+	playerProjectileSpeed = 5
 )
 
 func NewPlayerProjectile(w donburi.World, position math.Vec2) {
@@ -53,10 +53,10 @@ func newPlayerProjectile(w donburi.World, position math.Vec2, localRotation floa
 		OriginalRotation: originalRotation,
 	})
 
-	width, height := image.Size()
+	s := image.Bounds().Size()
 	component.Collider.SetValue(projectile, component.ColliderData{
-		Width:  float64(width),
-		Height: float64(height),
+		Width:  float64(s.X),
+		Height: float64(s.Y),
 		Layer:  component.CollisionLayerPlayerBullets,
 	})
 }

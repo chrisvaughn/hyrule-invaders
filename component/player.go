@@ -33,7 +33,7 @@ func (d *PlayerData) Damage() {
 }
 
 func (d *PlayerData) WeaponCooldown() time.Duration {
-	return 400 * time.Millisecond
+	return 750 * time.Millisecond
 }
 
 var Player = donburi.NewComponentType[PlayerData]()

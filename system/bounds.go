@@ -43,8 +43,8 @@ func (b *Bounds) Update(w donburi.World) {
 		t := transform.Transform.Get(entry)
 		sprite := component.Sprite.Get(entry)
 
-		w, h := sprite.Image.Size()
-		width, height := float64(w), float64(h)
+		s := sprite.Image.Bounds().Size()
+		width, height := float64(s.Y), float64(s.X)
 
 		var minX, maxX, minY, maxY float64
 
@@ -53,13 +53,13 @@ func (b *Bounds) Update(w donburi.World) {
 			minX = 0
 			maxX = float64(b.game.Settings.ScreenWidth) - width
 
-			minY = 0
+			minY = float64(b.game.Settings.ScreenHeight/3) * 2
 			maxY = float64(b.game.Settings.ScreenHeight) - height
 		case component.SpritePivotCenter:
 			minX = width / 2
 			maxX = float64(b.game.Settings.ScreenWidth) - width/2
 
-			minY = height / 2
+			minY = float64(b.game.Settings.ScreenHeight/3) * 2
 			maxY = float64(b.game.Settings.ScreenHeight) - height/2
 		}
 
