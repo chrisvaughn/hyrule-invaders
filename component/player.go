@@ -37,4 +37,3 @@ func (d *PlayerData) WeaponCooldown() time.Duration {
 }
 
 var Player = donburi.NewComponentType[PlayerData]()
-var PlayerCharacter = donburi.NewComponentType[struct{}]()
