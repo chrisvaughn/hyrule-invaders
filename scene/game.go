@@ -4,6 +4,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/yohamta/donburi"
+	"github.com/yohamta/donburi/features/math"
 
 	"github.com/chrisvaughn/hyrule-invaders/archetype"
 	"github.com/chrisvaughn/hyrule-invaders/component"
@@ -74,6 +75,8 @@ func (g *Game) createWorld() donburi.World {
 
 	archetype.NewPlayer(world)
 	archetype.NewPlayerCharacter(world)
+
+	archetype.NewEnemy(world, math.NewVec2(float64(g.screenWidth/2), 50), 0)
 
 	world.Create(component.Debug)
 
