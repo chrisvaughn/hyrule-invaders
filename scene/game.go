@@ -48,6 +48,9 @@ func (g *Game) loadLevel() {
 		system.NewVelocity(),
 		system.NewBounds(),
 		system.NewDespawn(),
+		system.NewCollision(),
+		system.NewHealth(),
+		system.NewEvents(),
 		render,
 		debug,
 	}
@@ -79,6 +82,8 @@ func (g *Game) createWorld() donburi.World {
 	archetype.NewEnemy(world, math.NewVec2(float64(g.screenWidth/2), 50), 0)
 
 	world.Create(component.Debug)
+
+	system.SetupEvents(world)
 
 	return world
 }

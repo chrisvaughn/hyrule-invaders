@@ -82,7 +82,7 @@ func NewPlayerCharacter(w donburi.World) {
 	component.Collider.SetValue(character, component.ColliderData{
 		Width:  float64(s.X),
 		Height: float64(s.Y),
-		Layer:  component.CollisionLayerPlayers,
+		Layer:  component.CollisionLayerPlayer,
 	})
 
 	component.Input.SetValue(character, component.InputData{
