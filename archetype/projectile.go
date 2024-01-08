@@ -57,6 +57,6 @@ func newPlayerProjectile(w donburi.World, position math.Vec2, localRotation floa
 	component.Collider.SetValue(projectile, component.ColliderData{
 		Width:  float64(s.X),
 		Height: float64(s.Y),
-		Layer:  component.CollisionLayerPlayerBullets,
+		Layer:  component.CollisionLayerPlayerProjectiles,
 	})
 }

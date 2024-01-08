@@ -44,7 +44,7 @@ func NewEnemy(
 	component.Collider.SetValue(airplane, component.ColliderData{
 		Width:  float64(s.X),
 		Height: float64(s.Y),
-		Layer:  component.CollisionLayerAirEnemies,
+		Layer:  component.CollisionLayerEnemies,
 	})
 
 	health := component.Health.Get(airplane)

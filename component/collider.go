@@ -5,12 +5,10 @@ import (
 )
 
 const (
-	CollisionLayerPlayerBullets ColliderLayer = iota
-	CollisionLayerEnemyBullets
-	CollisionLayerGroundEnemies
-	CollisionLayerAirEnemies
-	CollisionLayerPlayers
-	CollisionLayerCollectibles
+	CollisionLayerPlayerProjectiles ColliderLayer = iota
+	CollisionLayerEnemyProjectiles
+	CollisionLayerPlayer
+	CollisionLayerEnemies
 )
 
 type ColliderLayer int
