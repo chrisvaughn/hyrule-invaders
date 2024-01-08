@@ -46,12 +46,15 @@ jobs:
         GOOS: js
         GOARCH: wasm
 
+    - name: Copy WASM runtime
+      run: cp $(go env GOROOT)/misc/wasm/wasm_exec.js web/
+
     - name: Archive WASM build
       uses: actions/upload-artifact@v4
       with:
         name: wasm-build
         path: |
-          web/game.wasm
+          web/
 
   deploy:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -77,13 +80,14 @@ jobs:
         with:
           name: wasm-build
           path: web/
-      - run: cp $(go env GOROOT)/misc/wasm/wasm_exec.js web/
+
+      -
 
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web
+          path: web/
 
       - id: deployment
         uses: actions/deploy-pages@v4
